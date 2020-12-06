@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+
+    <appenders>
+<!--        <Console name="Console" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{HH:MM:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>-->
+<!--        </Console>-->
+
+        <File name="NoFound" fileName="logs/nofound.log">
+            <MarkerFilter marker="NoFound" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+        <File name="InfoStation" fileName="logs/info.log">
+            <MarkerFilter marker="InfoStation" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+        <File name="Exception" fileName="logs/exception.log">
+            <MarkerFilter marker="Exception" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+
+    </appenders>
+
+    <loggers>
+        <root level="trace">
+            <appender-ref ref="NoFound" level="warn"/>
+            <appender-ref ref="InfoStation" level="info"/>
+            <appender-ref ref="Exception" level="error"/>
+        </root>
+    </loggers>
+
+</configuration>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="module_10_10_0207" />
+        <module name="module_10_10_1108" />
+        <module name="Module_10_5" />
+        <module name="module_10_10_1608" />
+        <module name="module_10_10" />
+        <module name="module_10_10_1807" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
