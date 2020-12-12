@@ -1,27 +1,30 @@
+import lombok.Getter;
+
 import java.io.File;
 
-
+@Getter
 public class ProcessFileFolders {
 
     Integer allDocuments = 0;
     Integer allPages = 0;
 
-    public Integer getAllDocuments() {
-        return allDocuments;
+    public static boolean findObject(String entry) {
+
+        for (FactoryParsers item : FactoryParsers.values()) {
+            if (item.name().equals(entry)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setAllDocuments(Integer allDocuments) {
         this.allDocuments = this.allDocuments + allDocuments;
     }
 
-    public Integer getAllPages() {
-        return allPages;
-    }
-
     public void setAllPages(Integer allPages) {
         this.allPages = this.allPages + allPages;
     }
-
 
     protected String getFileExtension(File file) {
         String fileName = file.getName();
@@ -36,47 +39,28 @@ public class ProcessFileFolders {
     protected void processFilesFromFolder(String folder) {
         int countDocuments = 0;
 
-        WordParser wordParser = new WordParser();
-        PdfParser pdfParser = new PdfParser();
-
         File file = new File(folder);
         File[] folderEntries = file.listFiles();
 
-        try {
 
-
-            for (File entry : folderEntries) {
-                if (entry.isDirectory()) {
-                    processFilesFromFolder(String.valueOf(entry));
-                    continue;
-                }
-
-                String resultExt = getFileExtension(entry);
-
-
-                if (resultExt.equals("docx")) {
-                    countDocuments++;
-                    int countDocxPages = wordParser.parsingWord(entry);
-
-                    setAllPages(countDocxPages);
-
-                }
-
-                if (resultExt.equals("pdf")) {
-                    countDocuments++;
-                    int countPdf = pdfParser.parsingPdf(entry);
-
-                    setAllPages(countPdf);
-
-                }
-
+        for (File entry : folderEntries) {
+            if (entry.isDirectory()) {
+                processFilesFromFolder(String.valueOf(entry));
+                continue;
             }
 
-            setAllDocuments(countDocuments);
+            String resultExt = getFileExtension(entry);
 
-        } catch (NullPointerException ex) {
-            ex.getMessage();
+            if (findObject(resultExt)) {
+                FactoryParsers factoryParsers = FactoryParsers.valueOf(resultExt);
+                setAllPages(factoryParsers.getCode(entry));
+                countDocuments++;
+            }
+
         }
+
+        setAllDocuments(countDocuments);
+
     }
 
 }
