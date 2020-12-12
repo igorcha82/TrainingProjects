@@ -8,7 +8,7 @@ public class ProcessFileFolders {
     Integer allDocuments = 0;
     Integer allPages = 0;
 
-    public static boolean findObject(String entry) {
+    private static boolean findObject(String entry) {
 
         for (FactoryParsers item : FactoryParsers.values()) {
             if (item.name().equals(entry)) {

@@ -22,7 +22,7 @@ public class Main {
 
     }
 
-    protected static void checkDirectory(String pathDir) {
+    private static void checkDirectory(String pathDir) {
 
         File file = new File(pathDir);
 
